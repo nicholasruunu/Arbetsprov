@@ -1,2 +1,4 @@
-﻿För att köra arbetsprovet lokalt, ändra base_url i application/config.php och databasinställningarna i application/database.php
+﻿För att köra arbetsprovet lokalt, ändra base_url i application/config.php
+och databasinställningarna i application/database.php
+
 Databasen finns som SQL i arbetsprov_db.sql.gz
