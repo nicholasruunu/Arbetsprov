@@ -103,7 +103,6 @@
 				// kommer "section" fram utanför ajax-results, det tar vi bort
 				$search.siblings('section').slideUp('fast', function() {
 					$(this).remove();
-					alert('tog bort section');
 				});
 						
 				if($search_input.val().match(/\S.*/)) {

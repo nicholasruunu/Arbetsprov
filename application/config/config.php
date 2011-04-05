@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://213.114.131.222/';
+$config['base_url']	= 'http://nicholas.no-ip.org/';
 
 /*
 |--------------------------------------------------------------------------
