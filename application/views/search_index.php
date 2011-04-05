@@ -25,19 +25,19 @@
 			<h1 class="<?php echo $site ?>">Nicholas Ruunu, Webbdesigner Extraordinairé</h1>
 			<nav>
 				<ul>
-				<?php foreach($menu_array as $menu => $class): ?>			
+				<?php foreach($menu_array as $menu => $class): ?>
 					<li><a <?php echo $class ?>href="<?php echo site_url("search/{$menu}") ?>"><?php echo $menu ?></a></li>
-				<?php endforeach ?>		
+				<?php endforeach ?>				
 				</ul>
 			</nav>
 		</header>
-		
+
 		<div id="main">
-		<?php echo form_open("main/submit/{$site}", array('id' => 'search')) ?>			
-			<div><?php echo form_input('search_string', $search_string,
-				'placeholder="Skriv in din söksträng!" pattern="\S.*" autofocus required') ?></div>
-			<div><button>Sök</button></div>
-		<?php echo form_close() ?>
+			<?php echo form_open("main/submit/{$site}", array('id' => 'search')) ?>			
+				<div><?php echo form_input('search_string', $search_string,
+					'placeholder="Skriv in din söksträng!" pattern="\S.*" autofocus required') ?></div>
+				<div><button>Sök</button></div>
+			<?php echo form_close() ?>
 
 		<?php if( ! empty($search_results)): ?>		
 			<?php $this->load->view('search_results', $search_results) ?>
@@ -64,6 +64,7 @@
 				.after('<div id="ajax-results"></div'); // Lägger till en ajax-div vi kan manipulera
 			var $search_input = $search.find('input');
 			var $results = $('#ajax-results');
+			var $logo = $('header').children('h1');
 
 			// Clickhandler på tabbarna
 			$links.click(function(evt) {
@@ -76,7 +77,7 @@
 					$(this).addClass('active');
 					
 					// Fadear in ikonerna
-					$('header').children('h1')
+					$logo
 						.hide()
 						.removeClass()
 						.addClass($(this).text())
@@ -99,11 +100,12 @@
 				evt.preventDefault();
 				
 				// Om man sökt från urlen (http://213.114.132.37/search/all/nicholas)
-				// kommer "section" fram direkt, det tar vi bort
-				$('#main > section').slideUp('fast', function() {
+				// kommer "section" fram utanför ajax-results, det tar vi bort
+				$search.siblings('section').slideUp('fast', function() {
 					$(this).remove();
+					alert('tog bort section');
 				});
-				
+						
 				if($search_input.val().match(/\S.*/)) {
 					var $url = $links.filter('.active').attr('href');
 					// encodeURIComponent fungerade inte bra med sökmotorerna
