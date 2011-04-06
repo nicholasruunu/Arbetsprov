@@ -38,12 +38,8 @@
 |
 */
 
-$route['default_controller'] = "main/search";
+$route['default_controller'] = "search/all";
 $route['404_override'] = '';
-
-$route['search'] = "main/search";
-$route['search/(:any)'] = "main/search/$1";
-$route['search/(:any)/(.+)'] = "main/search/$1/$2";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

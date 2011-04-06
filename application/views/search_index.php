@@ -25,18 +25,18 @@
 			<h1 class="<?php echo $site ?>">Nicholas Ruunu, Webbdesigner Extraordinairé</h1>
 			<nav>
 				<ul>
-				<?php foreach($menu_array as $menu => $class): ?>
-					<li><a <?php echo $class ?>href="<?php echo site_url("search/{$menu}") ?>"><?php echo $menu ?></a></li>
+				<?php foreach($menu_array as $menu => $active): ?>
+					<li><a<?php if($active) echo ' class="active"' ?> href="<?php echo site_url("search/{$menu}") ?>"><?php echo $menu ?></a></li>
 				<?php endforeach ?>				
 				</ul>
 			</nav>
 		</header>
 
 		<div id="main">
-			<?php echo form_open("main/submit/{$site}", array('id' => 'search')) ?>			
+			<?php echo form_open("search/{$site}", array('id' => 'search')) ?>
 				<div><?php echo form_input('search_string', $search_string,
 					'placeholder="Skriv in din söksträng!" pattern="\S.*" autofocus required') ?></div>
-				<div><button>Sök</button></div>
+				<div><button name="submit">Sök</button></div>
 			<?php echo form_close() ?>
 
 		<?php if( ! empty($search_results)): ?>		
@@ -106,15 +106,15 @@
 				});
 						
 				if($search_input.val().match(/\S.*/)) {
+					// Hämtar urlen från det aktiva menyvalet
 					var $url = $links.filter('.active').attr('href');
 					// encodeURIComponent fungerade inte bra med sökmotorerna
 					var $search_string = $.url.encode($search_input.val());
-					
+
 					$.ajax({
 						url: $url+'/'+$search_string,
-						data: { ajax: true },
 						dataType: 'html',
-						type: 'POST',
+						type: 'GET',
 						beforeSend: function() {
 							$results.slideUp('slow');
 							$search_input.addClass('loading');
