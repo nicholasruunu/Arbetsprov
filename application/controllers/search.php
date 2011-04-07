@@ -13,9 +13,9 @@ class Search extends CI_Controller{
 	
 	public function _remap()
 	{
-		// Initierar data
+		// Initierar data, urldecodar om man valt att söka från URL eller utan javascript (submit)
 		$site			= $this->data['site']			= $this->uri->rsegment(2, 'all');
-		$search_string	= $this->data['search_string']	= trim($this->uri->rsegment(3, ''));
+		$search_string	= $this->data['search_string']	= urldecode(trim($this->uri->rsegment(3, '')));
 			
 		// Ser om vi postat utan javascript enablat
 		if($this->input->post('submit') !== FALSE)
@@ -23,15 +23,15 @@ class Search extends CI_Controller{
 			
 		// Bygger meny
 		$this->data['menu_array'] = array(
-			'all' => FALSE,
-			'google' => FALSE,
-			'yahoo' => FALSE,
-			'bing' => FALSE
+			'all' => array('active' => FALSE, 'title' =>  'Sök på alla sökmotorer samtidigt!'),
+			'google' => array('active' => FALSE, 'title' =>  'Sök på Google!'),
+			'yahoo' => array('active' => FALSE, 'title' =>  'Sök på Yahoo!'),
+			'bing' => array('active' => FALSE, 'title' =>  'Sök på Bing!')
 		);
 		
 		// Sätter aktivt menyval
 		if(array_key_exists($site, $this->data['menu_array']))
-			$this->data['menu_array'][$site] = TRUE;
+			$this->data['menu_array'][$site]['active'] = TRUE;
 		
 		// Gör en sökning om vi har någonting i söksträngen
 		if($search_string !== '')
@@ -47,10 +47,7 @@ class Search extends CI_Controller{
 	private function search($site, $search_string)
 	{
 		if(array_key_exists($site, $this->search_model->search_engines) || $site === 'all')
-		{
-			// URL decodar för urlencodning sker i modellen
-			$search_string = urldecode($search_string);
-			
+		{			
 			$this->data['search_results']['results'] = ($site === 'all')
 				? $this->search_model->get_combined_results($search_string)
 				: $this->search_model->get_results($site, $search_string);

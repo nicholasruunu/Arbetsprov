@@ -14,6 +14,6 @@
 		),
 		'yahoo' => array(
 			'url' => 'http://search.yahoo.com/search?n=20&p=',
-			'regex' => '/<div(\sclass="?sm-hd"?)?><h3><a.+?href="(?P<url>http:\/\/[^"]+?)".*?>(?P<title>[^\n\r\t]+?)<\/a>.*?(?:<div\sclass="?(sm-abs|abstr)"?>(?P<text>.*?)<\/div>.*?)?<span\sclass="?url"?>/m'
+			'regex' => '/<div\sclass="?res"?><div>(?:\s<span\sclass="?ext"?>.*?<\/span>\s)?<h3><a.+?href="(?P<url>http:\/\/[^"]+?)".*?>(?P<title>[^\n\r\t]+?)<\/a>.*?(?:<div\sclass="?(sm-abs|abstr)"?>(?P<text>.*?)<\/div>.*?)?<span\sclass="?url"?>/m'
 		),
 	);
