@@ -38,9 +38,8 @@
 				<div><button name="submit">Sök</button></div>
 			<?php echo form_close() ?>
 
-		<?php if( ! empty($search_results)): ?>		
-			<?php $this->load->view('search_results', $search_results) ?>
-		<?php endif ?>
+		<?php if( ! empty($search_results))
+				$this->load->view('search_results', $search_results) ?>
 		
 			<footer>
 				<small><strong>Verktyg:</strong>
