@@ -7,6 +7,7 @@ class Search extends CI_Controller{
 		parent::__construct();
 		
 		$this->load->model('search_model');
+		$this->load->spark('gravatar_helper/1.2');
 	}
 	
 	public function _remap()
@@ -33,6 +34,9 @@ class Search extends CI_Controller{
 		
 		// Sätter aktivt menyval
 		$data['menu_array'][$site]['active'] = TRUE;
+		
+		// Testar Sparks (getsparks.org) och Gravatar_helper
+		$data['gravatar'] = Gravatar_helper::from_email('nicholas.ruunu@gmail.com', 'G', 150);
 		
 		// Gör en sökning om vi har någonting i söksträngen
 		if($search_string !== '')
