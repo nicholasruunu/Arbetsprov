@@ -1,4 +1,4 @@
-		<section>
+		<section id="results">
 			<h1>Sökresultat</h1>
 			<?php if($results !== FALSE): ?>
 
