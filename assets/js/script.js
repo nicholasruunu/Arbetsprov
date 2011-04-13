@@ -1,12 +1,30 @@
 $(function() {
 	
 	// Initerar variabler
-	var $links = $('nav > ul > li > a');
+	var $links = $('header > nav').find('a');
 	var $search = $('#search')
 		.after('<div id="ajax-results"></div'); // Lägger till en ajax-div vi kan manipulera
 	var $search_input = $search.find('input');
 	var $results = $('#ajax-results');
 	var $logo = $('header').children('h1');
+	
+	// Author information
+	var $info = $('#author-info').hide();
+	var $info_link = $('#info-link');
+	
+	
+	// Clickhandler på "Om mig"
+	$info_link.click(function(evt) {
+		evt.preventDefault();
+		
+		$info.slideToggle('slow', function() {
+			if($info_link.toggleClass('active').hasClass('active')) {
+				$info_link.text('Stäng');
+			} else {
+				$info_link.text('Om mig');
+			}
+		});
+	});
 
 	// Clickhandler på tabbarna
 	$links.click(function(evt) {
@@ -43,7 +61,7 @@ $(function() {
 		
 		// Om man sökt från urlen (http://213.114.132.37/search/all/nicholas)
 		// kommer "section" fram utanför ajax-results, det tar vi bort
-		$search.siblings('section').slideUp('fast', function() {
+		$search.siblings('#results').slideUp('fast', function() {
 			$(this).remove();
 		});
 				
