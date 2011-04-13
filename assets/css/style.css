@@ -400,6 +400,7 @@ em {
 
 #author-info nav {
 	float: right;
+    margin-top: 97px;
 }
 
 #author-info nav ul li {
@@ -407,8 +408,8 @@ em {
 	margin-left: 10px;
 }
 
-#author-info nav ul li a {
-	display: block;
+#author-info nav ul li a img {
+	vertical-align: bottom;
 }
 
 
