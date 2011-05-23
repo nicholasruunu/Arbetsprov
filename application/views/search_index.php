@@ -42,7 +42,7 @@
 		
 			<footer>
 				<small><strong>Verktyg:</strong>
-				<a href="//codeigniter.com">CodeIgniter 2.0.1</a>,
+				<a href="//codeigniter.com">CodeIgniter 2.0.1</a> (<a href="//getsparks.org">Sparks</a>),
 				<a href="//jquery.com">jQuery 1.5.1</a>,
 				<a href="//html5boilerplate.com">HTML5 Boilerplate</a><br>
 				<em>Utvecklad för moderna webbläsare</em></small>
