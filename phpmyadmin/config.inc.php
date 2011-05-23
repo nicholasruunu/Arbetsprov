@@ -28,7 +28,7 @@ $i++;
 /* Authentication type */
 $cfg['Servers'][$i]['auth_type'] = 'cookie';
 /* Server parameters */
-$cfg['Servers'][$i]['host'] = '/tmp/mysql/kitty.sock';
+$cfg['Servers'][$i]['host'] = $_SERVER['db_host'];
 $cfg['Servers'][$i]['connect_type'] = 'socket';
 $cfg['Servers'][$i]['compress'] = false;
 /* Select mysqli if your server has it */
